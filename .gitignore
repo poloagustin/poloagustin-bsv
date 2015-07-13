@@ -4,3 +4,6 @@
 
 *.vssscc
 /ACCENDO/Accendo.DynamicsIntegration.Crm/packages
+/SUPERVIELLE/Supervielle.DataMigration/packages
+bin/
+obj/
