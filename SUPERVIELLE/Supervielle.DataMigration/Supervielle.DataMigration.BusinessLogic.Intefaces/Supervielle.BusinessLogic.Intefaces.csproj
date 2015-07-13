@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35027AE1-2A31-4766-BE47-4A5D0C0CF5B4}</ProjectGuid>
+    <ProjectGuid>{D34EDF51-8139-424F-BFE5-BB68EC2F61DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Supervielle.DataMigration.DataAccess.Sql.Interfaces</RootNamespace>
-    <AssemblyName>Supervielle.DataMigration.DataAccess.Sql.Interfaces</AssemblyName>
+    <RootNamespace>Supervielle.DataMigration.BusinessLogic.Intefaces</RootNamespace>
+    <AssemblyName>Supervielle.DataMigration.BusinessLogic.Intefaces</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -34,8 +34,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,19 +63,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICajaDeAhorroDao.cs" />
-    <Compile Include="IDynamicRecordDao.cs" />
-    <Compile Include="IGenericDao.cs" />
-    <Compile Include="IPersonaFisicaDao.cs" />
-    <Compile Include="IPersonaJuridicaDao.cs" />
-    <Compile Include="IRelacionCuentaPersonaDao.cs" />
+    <Compile Include="IEntityMigrationService.cs" />
+    <Compile Include="IOneToOneMigrationService.cs" />
+    <Compile Include="IProductMigrationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.DataMigration.Domain.csproj">
+    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.Domain.csproj">
       <Project>{a023dc26-9430-48d4-9061-b24814803b33}</Project>
-      <Name>Supervielle.DataMigration.Domain</Name>
+      <Name>Supervielle.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

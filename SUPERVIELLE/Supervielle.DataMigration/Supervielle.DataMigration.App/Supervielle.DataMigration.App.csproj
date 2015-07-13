@@ -108,17 +108,17 @@
       <Project>{75eb5035-36e2-4d25-a83f-06a7a5440c15}</Project>
       <Name>Accendo.DynamicsIntegration.Crm2015</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supervielle.DataMigration.BusinessLogic.Intefaces\Supervielle.DataMigration.BusinessLogic.Intefaces.csproj">
+    <ProjectReference Include="..\Supervielle.DataMigration.BusinessLogic.Intefaces\Supervielle.BusinessLogic.Intefaces.csproj">
       <Project>{d34edf51-8139-424f-bfe5-bb68ec2f61dc}</Project>
-      <Name>Supervielle.DataMigration.BusinessLogic.Intefaces</Name>
+      <Name>Supervielle.BusinessLogic.Intefaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supervielle.DataMigration.BusinessLogic\Supervielle.DataMigration.BusinessLogic.csproj">
+    <ProjectReference Include="..\Supervielle.DataMigration.BusinessLogic\Supervielle.BusinessLogic.csproj">
       <Project>{b4d2ab59-586c-4443-9ec5-1e3be17c0b53}</Project>
-      <Name>Supervielle.DataMigration.BusinessLogic</Name>
+      <Name>Supervielle.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.DataMigration.Domain.csproj">
+    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.Domain.csproj">
       <Project>{a023dc26-9430-48d4-9061-b24814803b33}</Project>
-      <Name>Supervielle.DataMigration.Domain</Name>
+      <Name>Supervielle.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

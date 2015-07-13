@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9D023D76-E8F3-42E4-BBCE-4F3057465522}</ProjectGuid>
+    <ProjectGuid>{B4D2AB59-586C-4443-9EC5-1E3BE17C0B53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Supervielle.DataMigration.DataAccess.Crm.Interfaces</RootNamespace>
-    <AssemblyName>Supervielle.DataMigration.DataAccess.Crm.Interfaces</AssemblyName>
+    <RootNamespace>Supervielle.DataMigration.BusinessLogic</RootNamespace>
+    <AssemblyName>Supervielle.DataMigration.BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -34,6 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
       <Private>True</Private>
@@ -46,7 +54,12 @@
       <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -63,40 +76,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAccountDao.cs" />
-    <Compile Include="ICajaDeAhorroDao.cs" />
-    <Compile Include="ICanalDao.cs" />
-    <Compile Include="IContactDao.cs" />
-    <Compile Include="IEntityDao.cs" />
-    <Compile Include="IEstadoCuentaDao.cs" />
-    <Compile Include="IMasterDataDao.cs" />
-    <Compile Include="ILocalidadDao.cs" />
-    <Compile Include="IModuloDao.cs" />
-    <Compile Include="IMonedaDao.cs" />
-    <Compile Include="IRelacionCuentaPersonaFisicaDao.cs" />
-    <Compile Include="ISucursalDao.cs" />
-    <Compile Include="IProfesionDao.cs" />
-    <Compile Include="IProvinciaDao.cs" />
-    <Compile Include="ISegmentoDao.cs" />
-    <Compile Include="IBancaDao.cs" />
-    <Compile Include="IActividadLaboralDao.cs" />
-    <Compile Include="IPaisDao.cs" />
-    <Compile Include="ITipoOperacionDao.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="Comparers\CuentaComparer.cs" />
+    <Compile Include="EntityMigrationService.cs" />
+    <Compile Include="Helpers\ConstantDictionarySingleton.cs" />
+    <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Mappers\CuentaMapper.cs" />
+    <Compile Include="Mappers\PersonaFisicaMapper.cs" />
+    <Compile Include="Mappers\PersonaJuridicaMapper.cs" />
+    <Compile Include="OneToOneMigrationService.cs" />
+    <Compile Include="ProductMigrationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ACCENDO\Accendo.DynamicsIntegration.Crm\Accendo.DynamicsIntegration.Crm2015\Accendo.DynamicsIntegration.Crm2015.csproj">
       <Project>{75eb5035-36e2-4d25-a83f-06a7a5440c15}</Project>
       <Name>Accendo.DynamicsIntegration.Crm2015</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.DataMigration.Domain.csproj">
+    <ProjectReference Include="..\Supervielle.DataMigration.BusinessLogic.Intefaces\Supervielle.BusinessLogic.Intefaces.csproj">
+      <Project>{d34edf51-8139-424f-bfe5-bb68ec2f61dc}</Project>
+      <Name>Supervielle.BusinessLogic.Intefaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervielle.DataMigration.DataAccess.Crm.Interfaces\Supervielle.DataAccess.Crm.Interfaces.csproj">
+      <Project>{9d023d76-e8f3-42e4-bbce-4f3057465522}</Project>
+      <Name>Supervielle.DataAccess.Crm.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervielle.DataMigration.DataAccess.Crm\Supervielle.DataAccess.Crm.csproj">
+      <Project>{768fc467-09b0-428b-b0ad-8ea17f41ad27}</Project>
+      <Name>Supervielle.DataAccess.Crm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervielle.DataMigration.DataAccess.Sql.Interfaces\Supervielle.DataAccess.Sql.Interfaces.csproj">
+      <Project>{35027ae1-2a31-4766-be47-4a5d0c0cf5b4}</Project>
+      <Name>Supervielle.DataAccess.Sql.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervielle.DataMigration.DataAccess.Sql\Supervielle.DataAccess.Sql.csproj">
+      <Project>{58ef9bc0-7b38-43d9-9804-94b260d489b3}</Project>
+      <Name>Supervielle.DataAccess.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.Domain.csproj">
       <Project>{a023dc26-9430-48d4-9061-b24814803b33}</Project>
-      <Name>Supervielle.DataMigration.Domain</Name>
+      <Name>Supervielle.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

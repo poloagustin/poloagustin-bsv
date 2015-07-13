@@ -65,13 +65,13 @@
     <Compile Include="RelacionCuentaPersonaDao.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Supervielle.DataMigration.DataAccess.Sql.Interfaces\Supervielle.DataMigration.DataAccess.Sql.Interfaces.csproj">
+    <ProjectReference Include="..\Supervielle.DataMigration.DataAccess.Sql.Interfaces\Supervielle.DataAccess.Sql.Interfaces.csproj">
       <Project>{35027ae1-2a31-4766-be47-4a5d0c0cf5b4}</Project>
-      <Name>Supervielle.DataMigration.DataAccess.Sql.Interfaces</Name>
+      <Name>Supervielle.DataAccess.Sql.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.DataMigration.Domain.csproj">
+    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.Domain.csproj">
       <Project>{a023dc26-9430-48d4-9061-b24814803b33}</Project>
-      <Name>Supervielle.DataMigration.Domain</Name>
+      <Name>Supervielle.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
