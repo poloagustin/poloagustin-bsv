@@ -1,9 +1,10 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
-*.vssscc
 /ACCENDO/Accendo.DynamicsIntegration.Crm/packages
+*.vssscc
 /SUPERVIELLE/Supervielle.DataMigration/packages
+*.suo
+*.vspscc
 bin/
 obj/
