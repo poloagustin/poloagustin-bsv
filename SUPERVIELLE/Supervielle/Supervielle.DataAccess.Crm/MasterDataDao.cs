@@ -2,6 +2,7 @@
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Supervielle.DataAccess.Crm.Interfaces;
+using Supervielle.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,13 +55,22 @@ namespace Supervielle.DataAccess.Crm
 
         public EntityReference GetEntityReferenceByCode(object code)
         {
-            var entity = this.GetEntityByCode(code);
-            var entityReference = new EntityReference();
-            entityReference.Id = entity.Id;
-            entityReference.LogicalName = entity.LogicalName;
-            entityReference.Name = entity.Attributes.Contains(this.nameAttribute) ? (string)entity[this.nameAttribute] : string.Empty;
+            try
+            {
+                var entity = this.GetEntityByCode(code);
+                var entityReference = new EntityReference();
+                entityReference.Id = entity.Id;
+                entityReference.LogicalName = entity.LogicalName;
+                entityReference.Name = entity.Attributes.Contains(this.nameAttribute) ? (string)entity[this.nameAttribute] : string.Empty;
 
-            return entityReference;
+                return entityReference;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
         }
     }
 }
