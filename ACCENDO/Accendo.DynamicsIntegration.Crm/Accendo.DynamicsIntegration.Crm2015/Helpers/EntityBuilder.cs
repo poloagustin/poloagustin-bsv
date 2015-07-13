@@ -1,4 +1,5 @@
 ﻿using Accendo.DynamicsIntegration.Crm2015.CustomAttributes;
+using Accendo.DynamicsIntegration.Crm2015.Enums;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
@@ -15,7 +16,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Helpers
 {
     public static class EntityBuilder
     {
-        public static List<Entity> BuildEntityList(IEnumerable objects, Enums.MappingType mappingType)
+        public static List<Entity> BuildEntityList(IEnumerable objects, Enums.MappingType mappingType, BulkAction bulkAction)
         {
             List<Entity> entities = new List<Entity>();
 
@@ -24,21 +25,18 @@ namespace Accendo.DynamicsIntegration.Crm2015.Helpers
 
             foreach (var obj in objects)
             {
-                entities.Add(BuildEntity(obj, mappingType));
+                entities.Add(BuildEntity(obj, mappingType, bulkAction));
             }
 
             return entities;
         }
 
-        public static Entity BuildEntity(object obj, Enums.MappingType mappingType, EntityMetadata entityMetadata = null)
+        public static Entity BuildEntity(object obj, Enums.MappingType mappingType, BulkAction bulkAction, EntityMetadata entityMetadata = null)
         {
             if (obj == null)
                 return null;
 
             Entity entity = new Entity();
-
-
-            entity.LogicalName = obj.GetType().Name;
 
             var properties = obj.GetType().GetProperties()
                 .Where(p =>
@@ -55,7 +53,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Helpers
                     BuildCustomCrmDtoEntity(obj, entity, properties);
                     break;
                 case Accendo.DynamicsIntegration.Crm2015.Enums.MappingType.EntityLogicalName:
-                    BuildEntityLogicalNameEntity(obj, entity, properties);
+                    BuildEntityLogicalNameEntity(obj, entity, properties, bulkAction, entityMetadata);
                     break;
                 case Accendo.DynamicsIntegration.Crm2015.Enums.MappingType.None:
                 default:
@@ -63,150 +61,13 @@ namespace Accendo.DynamicsIntegration.Crm2015.Helpers
                     break;
             }
 
-            var isCustomCrmAttribute = obj.GetType().GetCustomAttributes(true).Any(x => x.GetType() == typeof(CustomCrmDtoAttribute));
-            if (!isCustomCrmAttribute)
-            {
-                foreach (var property in properties)
-                {
-                    var propValue = property.GetValue(obj, null);
-
-                    if (propValue != null)
-                    {
-                        if (property.PropertyType == typeof(string))
-                        {
-                            entity.Attributes.Add(property.Name, (string)propValue);
-                        }
-                        else if (property.PropertyType == typeof(Picklist))
-                        {
-                            if (((Picklist)propValue).Value >= 0)
-                                entity.Attributes.Add(property.Name, new OptionSetValue(((Picklist)propValue).Value));
-                        }
-                        else if (property.PropertyType == typeof(Lookup))
-                        {
-                            if (((Lookup)propValue).Id != Guid.Empty)
-                            {
-                                entity.Attributes.Add(property.Name, new EntityReference(
-                                    ((Lookup)propValue).LogicalName,
-                                    ((Lookup)propValue).Id));
-                            }
-                            else
-                            {
-                                entity.Attributes.Add(property.Name, null);
-                            }
-                        }
-                        else if (property.PropertyType == typeof(DateTime))
-                        {
-                            if (((DateTime)propValue).Year > 1900)
-                                entity.Attributes.Add(property.Name, ((DateTime)propValue));
-                        }
-                        else if (property.PropertyType == typeof(Guid))
-                        {
-                            if (((Guid)propValue) != Guid.Empty)
-                                entity.Attributes.Add(property.Name, (Guid)propValue);
-                        }
-                        else if (property.PropertyType == typeof(decimal))
-                        {
-                            entity.Attributes.Add(property.Name, (decimal)propValue);
-                        }
-                        else if (property.PropertyType == typeof(int))
-                        {
-                            entity.Attributes.Add(property.Name, (int)propValue);
-                        }
-                        else if (property.PropertyType == typeof(bool))
-                        {
-                            entity.Attributes.Add(property.Name, (bool)propValue);
-                        }
-                        else if (property.PropertyType == typeof(decimal?))
-                        {
-                            entity.Attributes.Add(property.Name, (decimal)propValue);
-                        }
-                        else if (property.PropertyType == typeof(int?))
-                        {
-                            entity.Attributes.Add(property.Name, (int)propValue);
-                        }
-                        else if (property.PropertyType == typeof(bool?))
-                        {
-                            entity.Attributes.Add(property.Name, (bool)propValue);
-                        }
-                        else if (property.PropertyType == typeof(Crm2015.Money))
-                        {
-                            entity.Attributes.Add(property.Name, new Microsoft.Xrm.Sdk.Money(((Crm2015.Money)propValue).Value));
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (var property in properties)
-                {
-                    var propValue = property.GetValue(obj, null);
-                    var attrs = property.GetCustomAttributes(true);
-                    var attrName = attrs.Any(x => x.GetType() == typeof(CustomCrmDtoPropertyAttribute)) ? ((CustomCrmDtoPropertyAttribute)attrs.First(x => x.GetType() == typeof(CustomCrmDtoPropertyAttribute))).AttributeName : string.Empty;
-                    if (propValue != null && !string.IsNullOrEmpty(attrName))
-                    {
-                        if (attrName.GetType() == typeof(string))
-                        {
-                            entity.Attributes.Add(property.Name, (string)propValue);
-                        }
-                        else if (attrName.GetType() == typeof(Picklist))
-                        {
-                            if (((Picklist)propValue).Value >= 0)
-                                entity.Attributes.Add(property.Name, new OptionSetValue(((Picklist)propValue).Value));
-                        }
-                        else if (property.PropertyType == typeof(Lookup))
-                        {
-                            if (((Lookup)propValue).Id != Guid.Empty)
-                                entity.Attributes.Add(property.Name, new EntityReference(
-                                    ((Lookup)propValue).LogicalName,
-                                    ((Lookup)propValue).Id));
-                        }
-                        else if (property.PropertyType == typeof(DateTime))
-                        {
-                            if (((DateTime)propValue).Year > 1900)
-                                entity.Attributes.Add(property.Name, ((DateTime)propValue));
-                        }
-                        else if (property.PropertyType == typeof(Guid))
-                        {
-                            if (((Guid)propValue) != Guid.Empty)
-                                entity.Attributes.Add(property.Name, (Guid)propValue);
-                        }
-                        else if (property.PropertyType == typeof(decimal))
-                        {
-                            entity.Attributes.Add(property.Name, (decimal)propValue);
-                        }
-                        else if (property.PropertyType == typeof(int))
-                        {
-                            entity.Attributes.Add(property.Name, (int)propValue);
-                        }
-                        else if (property.PropertyType == typeof(bool))
-                        {
-                            entity.Attributes.Add(property.Name, (bool)propValue);
-                        }
-                        else if (property.PropertyType == typeof(decimal?))
-                        {
-                            entity.Attributes.Add(property.Name, (decimal)propValue);
-                        }
-                        else if (property.PropertyType == typeof(int?))
-                        {
-                            entity.Attributes.Add(property.Name, (int)propValue);
-                        }
-                        else if (property.PropertyType == typeof(bool?))
-                        {
-                            entity.Attributes.Add(property.Name, (bool)propValue);
-                        }
-                        else if (property.PropertyType == typeof(Crm2015.Money))
-                        {
-                            entity.Attributes.Add(property.Name, new Microsoft.Xrm.Sdk.Money(((Crm2015.Money)propValue).Value));
-                        }
-                    }
-                }
-            }
-
             return entity;
         }
 
         private static void BuildReflectionEntity(object obj, Entity entity, IEnumerable<System.Reflection.PropertyInfo> properties)
         {
+            entity.LogicalName = obj.GetType().Name;
+
             foreach (var property in properties)
             {
                 if (entity.Contains(property.Name))
@@ -216,30 +77,56 @@ namespace Accendo.DynamicsIntegration.Crm2015.Helpers
             }
         }
 
-        private static void BuildEntityLogicalNameEntity(object obj, Entity entity, IEnumerable<System.Reflection.PropertyInfo> properties)
+        private static void BuildEntityLogicalNameEntity(object obj, Entity entity, IEnumerable<System.Reflection.PropertyInfo> properties, BulkAction bulkAction, EntityMetadata entityMetadata = null)
         {
+            entity.LogicalName = ((EntityLogicalNameAttribute)obj.GetType().GetCustomAttributes(typeof(EntityLogicalNameAttribute), false).First()).LogicalName;
+
             var filteredProperties = from p in properties
                                      where p.GetCustomAttributes(typeof(AttributeLogicalNameAttribute), false).Any()
                                      select p;
 
+            IEnumerable<AttributeMetadata> attributesToRetrieve = new List<AttributeMetadata>();
+
+            if (entityMetadata != null)
+            {
+                if (bulkAction == BulkAction.Create)
+                {
+                    attributesToRetrieve = entityMetadata.Attributes.Where(x => x.IsValidForCreate ?? false);
+                }
+                else if (bulkAction == BulkAction.Update)
+                {
+                    attributesToRetrieve = entityMetadata.Attributes.Where(x => x.IsValidForUpdate ?? false);
+                }
+            }
+
             foreach (var property in filteredProperties)
             {
                 var attributeLogicalNameProperty = (AttributeLogicalNameAttribute)property.GetCustomAttributes(typeof(AttributeLogicalNameAttribute), false).First();
+                var attributeMetadata = attributesToRetrieve.FirstOrDefault(x => x.LogicalName == attributeLogicalNameProperty.LogicalName);
 
-                if (entity.Contains(attributeLogicalNameProperty.LogicalName))
+                if (!entity.Contains(attributeLogicalNameProperty.LogicalName) && (!attributesToRetrieve.Any() || attributeMetadata != null))
                 {
-                    MapLogicalNameEntityProperty(property.GetValue(obj), entity, attributeLogicalNameProperty.LogicalName);
+                    MapLogicalNameEntityProperty(property.GetValue(obj), entity, attributeLogicalNameProperty.LogicalName, bulkAction, attributeMetadata);
                 }
             }
         }
 
-        private static void MapLogicalNameEntityProperty(object value, Entity entity, string logicalName)
+        private static void MapLogicalNameEntityProperty(object value, Entity entity, string logicalName, BulkAction bulkAction, AttributeMetadata attributeMetadata = null)
         {
-            entity[logicalName] = value;
+            if (value != null)
+            {
+                entity[logicalName] = value; 
+            }
+            else if (bulkAction == BulkAction.Update && (attributeMetadata.RequiredLevel.Value == AttributeRequiredLevel.None || attributeMetadata.RequiredLevel.Value == AttributeRequiredLevel.Recommended))
+            {
+                entity[logicalName] = null;
+            }
         }
 
         private static void BuildCustomCrmDtoEntity(object obj, Entity entity, IEnumerable<System.Reflection.PropertyInfo> properties)
         {
+            entity.LogicalName = ((CustomCrmDtoAttribute)obj.GetType().GetCustomAttributes(typeof(CustomCrmDtoAttribute), false).First()).EntityName;
+
             var filteredProperties = from p in properties
                                      where p.GetCustomAttributes(typeof(CustomCrmDtoPropertyAttribute), false).Any()
                                      select p;
@@ -413,20 +300,20 @@ namespace Accendo.DynamicsIntegration.Crm2015.Helpers
             var filteredProperties = from p in properties
                                      where p.GetCustomAttributes(typeof(AttributeLogicalNameAttribute), false).Any()
                                      select p;
+            IEnumerable<AttributeMetadata> attributesToRetrieve = new List<AttributeMetadata>();
 
-                        if (entityMetadata != null)
-    {
-                var attributesToRetrieve = entityMetadata.Attributes.Where(x => x.IsValidForRead ?? false);
-    }
-
+            if (entityMetadata != null)
+            {
+                attributesToRetrieve = entityMetadata.Attributes.Where(x => x.IsValidForRead ?? false);
+            }
 
             foreach (var property in filteredProperties)
             {
                 var attributeLogicalNameProperty = (AttributeLogicalNameAttribute)property.GetCustomAttributes(typeof(AttributeLogicalNameAttribute), false).First();
 
-                if (entity.Contains(attributeLogicalNameProperty.LogicalName))
+                if (entity.Contains(attributeLogicalNameProperty.LogicalName) && (!attributesToRetrieve.Any() || attributesToRetrieve.Any(x => x.LogicalName == attributeLogicalNameProperty.LogicalName)))
                 {
-                            MapAttributeLogicalNameProperty(t, entity[attributeLogicalNameProperty.LogicalName], property); 
+                    MapAttributeLogicalNameProperty(t, entity[attributeLogicalNameProperty.LogicalName], property);
                 }
             }
         }

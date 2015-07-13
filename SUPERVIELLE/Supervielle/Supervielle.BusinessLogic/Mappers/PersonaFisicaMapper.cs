@@ -47,7 +47,7 @@ namespace Supervielle.BusinessLogic.Mappers
             contact.Address1_PostalCode = personaFisica.DomicilioCodigoPostal;
             contact.bsv_localidad = localidad;
             contact.bsv_provincia = provincia;
-            contact.bsv_tipo = new OptionSetValue(personaFisica.TipoTelefonoId ? 0 : 1);
+            contact.bsv_tipo = string.IsNullOrWhiteSpace(personaFisica.TipoDomicilioId) ? null : new OptionSetValue(Convert.ToInt32(personaFisica.TipoDomicilioId));
             contact.Address1_Telephone1 = personaFisica.NumeroTelefonoPrincipal.ToString();
             // TODO: Set NumeroTelefonoLaboral
             //contact.??? = personaFisica.NumeroTelefonoLaboral.ToString();

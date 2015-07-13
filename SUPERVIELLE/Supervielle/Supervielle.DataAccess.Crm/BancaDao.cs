@@ -18,12 +18,12 @@ namespace Supervielle.DataAccess.Crm
 
         protected override string nameAttribute
         {
-            get { return "bsv_codigo"; }
+            get { return "bsv_name"; }
         }
 
         protected override string codeAttribute
         {
-            get { return "bsv_codigo"; }
+            get { return "bsv_name"; }
         }
     }
 }

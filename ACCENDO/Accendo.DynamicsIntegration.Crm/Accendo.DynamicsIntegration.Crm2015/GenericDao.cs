@@ -13,6 +13,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,7 +73,7 @@ namespace Accendo.DynamicsIntegration.Crm2015
 
         protected virtual string entityName
         {
-            
+
             get
             {
                 lock (lockObj)
@@ -103,13 +104,46 @@ namespace Accendo.DynamicsIntegration.Crm2015
 
         protected abstract string nameAttribute { get; }
 
+        private static PropertyInfo idProperty;
+
+        protected PropertyInfo IdProperty
+        {
+
+            get
+            {
+                lock (lockObj)
+                {
+                    if (idProperty == null)
+                    {
+                        switch (mappingType)
+                        {
+                            case MappingType.CustomCrmDto:
+                                var customDtoProperties = typeof(T).GetProperties().Where(x => x.GetCustomAttributes<CustomCrmDtoPropertyAttribute>().Any());
+                                idProperty = customDtoProperties.First(x => x.GetCustomAttribute<CustomCrmDtoPropertyAttribute>().AttributeName == idAttribute);
+                                break;
+                            case MappingType.EntityLogicalName:
+                                var logicalNameProperties = typeof(T).GetProperties().Where(x => x.GetCustomAttributes<AttributeLogicalNameAttribute>().Any());
+                                idProperty = logicalNameProperties.First(x => x.GetCustomAttribute<AttributeLogicalNameAttribute>().LogicalName == idAttribute);
+                                break;
+                            case MappingType.None:
+                            default:
+                                idProperty = typeof(T).GetProperties().First(x => x.GetType() == typeof(Guid));
+                                break;
+                        }
+                    }
+                }
+
+                return idProperty;
+            }
+        }
+
         public List<CrmAttributeXml> GetTypeAttributes()
         {
             if (this.crmAttributes != null)
             {
                 return this.crmAttributes;
             }
-            
+
             var properties = typeof(T).GetProperties();
             var nonCollectionsNonVirtualProperties = properties.Where(p =>
                     (
@@ -121,12 +155,12 @@ namespace Accendo.DynamicsIntegration.Crm2015
 
             if (this.mappingType == MappingType.CustomCrmDto)
             {
-                var customCrmProperties = 
+                var customCrmProperties =
                     from p in nonCollectionsNonVirtualProperties
                     where p.GetCustomAttributes(typeof(CustomCrmDtoPropertyAttribute), false).Any()
                     select (CustomCrmDtoPropertyAttribute)p.GetCustomAttributes(typeof(CustomCrmDtoPropertyAttribute), false).First();
                 return (from cdp in customCrmProperties
-                       select new CrmAttributeXml(cdp.AttributeName)).ToList();
+                        select new CrmAttributeXml(cdp.AttributeName)).ToList();
             }
             else if (this.mappingType == MappingType.EntityLogicalName)
             {
@@ -160,12 +194,18 @@ namespace Accendo.DynamicsIntegration.Crm2015
 
         public void DeleteMany(IEnumerable<EntityReference> entityReferences)
         {
-            
+            var requests = entityReferences.Select(x =>
+            {
+                var deleteRequest = new DeleteRequest();
+                deleteRequest.Target = x;
+                return deleteRequest;
+            });
+
+            this.ExecuteManyRequests(requests);
         }
 
         public void DeleteManyEntities(IEnumerable<Entity> entities)
         {
-            this.DoEntitiesBulkActionPaginated(entities, BulkAction.Delete);
         }
 
         public IEnumerable<Entity> DoBulkAction(IEnumerable<Entity> data, BulkAction action)
@@ -215,18 +255,32 @@ namespace Accendo.DynamicsIntegration.Crm2015
                 }
 
                 var response = (ExecuteMultipleResponse)this.helper.Service.Execute(multipleRequest);
-                if (action == BulkAction.Create)
+                if (response.IsFaulted)
                 {
-                    foreach (var item in response.Responses)
+                    foreach (var responseItem in response.Responses)
                     {
-                        if (item.Fault == null)
+                        if (responseItem.Fault != null)
                         {
-                            var entity = data.ElementAt(item.RequestIndex);
-                            var res = new Entity(entity.LogicalName);
-                            res.Attributes = entity.Attributes;
-                            res.Id = (Guid)item.Response.Results["id"];
+                            var ex = new FaultException<OrganizationServiceFault>(responseItem.Fault);
+                            throw ex;
+                        }
+                    }
+                }
+                else
+                {
+                    if (action == BulkAction.Create)
+                    {
+                        foreach (var item in response.Responses)
+                        {
+                            if (item.Fault == null)
+                            {
+                                var entity = data.ElementAt(item.RequestIndex);
+                                var res = new Entity(entity.LogicalName);
+                                res.Attributes = entity.Attributes;
+                                res.Id = (Guid)item.Response.Results["id"];
 
-                            result.Add(res);
+                                result.Add(res);
+                            }
                         }
                     }
                 }
@@ -253,7 +307,7 @@ namespace Accendo.DynamicsIntegration.Crm2015
                 }
                 else
                 {
-                    entity = this.ObjectToEntity(data.ElementAt(i));
+                    entity = this.ObjectToEntity(data.ElementAt(i), action);
                     if (action == BulkAction.Create)
                     {
                         entity.Id = Guid.Empty;
@@ -486,14 +540,14 @@ namespace Accendo.DynamicsIntegration.Crm2015
             return objs;
         }
 
-        public virtual Entity ObjectToEntity(T obj)
+        public virtual Entity ObjectToEntity(T obj, BulkAction bulkAction)
         {
-            return EntityBuilder.BuildEntity(obj, this.mappingType);
+            return EntityBuilder.BuildEntity(obj, this.mappingType, bulkAction, entityMetadata);
         }
 
         public virtual T Save(T obj)
         {
-            var entity = this.ObjectToEntity(obj);
+            var entity = this.ObjectToEntity(obj, BulkAction.Create);
             entity.Id = Guid.Empty;
 
             try
@@ -624,7 +678,7 @@ namespace Accendo.DynamicsIntegration.Crm2015
 
         public void Update(T obj)
         {
-            var entity = this.ObjectToEntity(obj);
+            var entity = this.ObjectToEntity(obj, BulkAction.Update);
             this.helper.Service.Update(entity);
         }
 
@@ -642,7 +696,7 @@ namespace Accendo.DynamicsIntegration.Crm2015
         {
             for (int i = 0; i < pageResult.Count(); i++)
             {
-                typeof(T).GetProperty(this.idAttribute).SetValue(data.ElementAt(i), pageResult.ElementAt(i).Id, null);
+                IdProperty.SetValue(data.ElementAt(i), pageResult.ElementAt(i).Id, null);
             }
 
             return data;
@@ -800,6 +854,11 @@ namespace Accendo.DynamicsIntegration.Crm2015
                     responses.AddRange(ExecuteMultipleRequests(page, singleTransaction));
                     page.Clear();
                 }
+            }
+
+            if (page.Any())
+            {
+                responses.AddRange(ExecuteMultipleRequests(page, singleTransaction));
             }
 
             return responses;
