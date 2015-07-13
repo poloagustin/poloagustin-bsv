@@ -1,0 +1,46 @@
+﻿[
+    {
+        "argumentOption": "-oto",
+        "argumentType": "OneToOne",
+        "availableValues": [
+            {
+
+                "name": "Pais",
+                "configuration": {
+                    "originTable": "pais",
+                    "destinationEntity": "bsv_pais",
+                    "fields": [
+                        {
+                            "originColumn": "id_pais",
+                            "originType": "String",
+                            "destinationAttribute": "bsv_cod_pais",
+                            "destinationType": "String",
+                            "isKey": "true"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "argumentOption": "-e",
+        "argumentType": "Entities",
+        "availableValues": [
+        ]
+    },
+    {
+        "argumentOption": "-p",
+        "argumentType": "Products",
+        "availableValues": [
+            {
+                "name": "CA"
+            },
+            {
+                "name": "TC"
+            },
+            {
+                "name": "TD"
+            }
+        ]
+    }
+]

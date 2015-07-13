@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Supervielle.DataMigration.DataAccess.Sql.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionStringName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Supervielle.DataMigration</Value>
+    </Setting>
+    <Setting Name="SqlMappingsFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\attribute-mapping-sql.json</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

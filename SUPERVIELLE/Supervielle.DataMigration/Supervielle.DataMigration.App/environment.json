@@ -1,0 +1,13 @@
+﻿{
+    "Server": "http://10.241.241.11/SVDESAMIG",
+    "Credentials": {
+        "Domain": "servicios",
+        "Username": "svcdynmcrmadmindesa",
+        "Password": "Yano.123"
+    },
+    "MigrationServer": "10.241.241.11",
+    "SqlServerLogin": {
+        "Username": "svdesamig",
+        "Password": "svdesamig"
+    }
+}

@@ -1,0 +1,158 @@
+﻿using Accendo.DynamicsIntegration.Crm2015.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Accendo.DynamicsIntegration.Crm2015.Helpers
+{
+    public class CrmConditionXmlHelper
+    {
+        public static string GetValue(CrmConditionTypeXml crmConditionTypeXml)
+        {
+            switch (crmConditionTypeXml)
+            {
+                case CrmConditionTypeXml.Eq:
+                    return "eq";
+                case CrmConditionTypeXml.Neq:
+                    return "neq";
+                case CrmConditionTypeXml.Ne:
+                    return "ne";
+                case CrmConditionTypeXml.Gt:
+                    return "gt";
+                case CrmConditionTypeXml.Ge:
+                    return "ge";
+                case CrmConditionTypeXml.Le:
+                    return "le";
+                case CrmConditionTypeXml.Lt:
+                    return "lt";
+                case CrmConditionTypeXml.Like:
+                    return "like";
+                case CrmConditionTypeXml.NotLike:
+                    return "not-like";
+                case CrmConditionTypeXml.In:
+                    return "in";
+                case CrmConditionTypeXml.NotIn:
+                    return "not-in";
+                case CrmConditionTypeXml.Between:
+                    return "between";
+                case CrmConditionTypeXml.NotBetween:
+                    return "not-between";
+                case CrmConditionTypeXml.IsNull:
+                    return "null";
+                case CrmConditionTypeXml.NotNull:
+                    return "not-null";
+                case CrmConditionTypeXml.Yesterday:
+                    return "yesterday";
+                case CrmConditionTypeXml.Today:
+                    return "today";
+                case CrmConditionTypeXml.Tomorrow:
+                    return "tomorrow";
+                case CrmConditionTypeXml.LastSevenDays:
+                    return "last-seven-days";
+                case CrmConditionTypeXml.NextSevenDays:
+                    return "next-seven-days";
+                case CrmConditionTypeXml.LastWeek:
+                    return "last-week";
+                case CrmConditionTypeXml.ThisWeek:
+                    return "this-week";
+                case CrmConditionTypeXml.NextWeek:
+                    return "next-week";
+                case CrmConditionTypeXml.LastMonth:
+                    return "last-month";
+                case CrmConditionTypeXml.ThisMonth:
+                    return "this-month";
+                case CrmConditionTypeXml.NextMonth:
+                    return "next-month";
+                case CrmConditionTypeXml.On:
+                    return "on";
+                case CrmConditionTypeXml.OnOrBefore:
+                    return "on-or-before";
+                case CrmConditionTypeXml.OnOrAfter:
+                    return "on-or-after";
+                case CrmConditionTypeXml.LastYear:
+                    return "last-year";
+                case CrmConditionTypeXml.ThisYear:
+                    return "this-year";
+                case CrmConditionTypeXml.NextYear:
+                    return "next-year";
+                case CrmConditionTypeXml.LastXHours:
+                    return "last-x-hours";
+                case CrmConditionTypeXml.NextXHours:
+                    return "next-x-hours";
+                case CrmConditionTypeXml.LastXDays:
+                    return "last-x-days";
+                case CrmConditionTypeXml.NextXDays:
+                    return "next-x-days";
+                case CrmConditionTypeXml.LastXWeeks:
+                    return "last-x-weeks";
+                case CrmConditionTypeXml.NextXWeeks:
+                    return "next-x-weeks";
+                case CrmConditionTypeXml.LastXMonths:
+                    return "last-x-months";
+                case CrmConditionTypeXml.NextXMonths:
+                    return "next-x-months";
+                case CrmConditionTypeXml.OlderthanXMonths:
+                    return "olderthan-x-months";
+                case CrmConditionTypeXml.LastXYears:
+                    return "last-x-years";
+                case CrmConditionTypeXml.NextXYears:
+                    return "next-x-years";
+                case CrmConditionTypeXml.EqUserid:
+                    return "eq-userid";
+                case CrmConditionTypeXml.NeUserid:
+                    return "ne-userid";
+                case CrmConditionTypeXml.EqUserteams:
+                    return "eq-userteams";
+                case CrmConditionTypeXml.EqBusinessid:
+                    return "eq-businessid";
+                case CrmConditionTypeXml.NeBusinessid:
+                    return "ne-businessid";
+                case CrmConditionTypeXml.EqUserlanguage:
+                    return "eq-userlanguage";
+                case CrmConditionTypeXml.ThisFiscalYear:
+                    return "this-fiscal-year";
+                case CrmConditionTypeXml.ThisFiscalPeriod:
+                    return "this-fiscal-period";
+                case CrmConditionTypeXml.NextFiscalYear:
+                    return "next-fiscal-year";
+                case CrmConditionTypeXml.NextFiscalPeriod:
+                    return "next-fiscal-period";
+                case CrmConditionTypeXml.LastFiscalYear:
+                    return "last-fiscal-year";
+                case CrmConditionTypeXml.LastFiscalPeriod:
+                    return "last-fiscal-period";
+                case CrmConditionTypeXml.LastXFiscalYears:
+                    return "last-x-fiscal-years";
+                case CrmConditionTypeXml.LastXFiscalPeriods:
+                    return "last-x-fiscal-periods";
+                case CrmConditionTypeXml.NextXFiscalYears:
+                    return "next-x-fiscal-years";
+                case CrmConditionTypeXml.NextXFiscalPeriods:
+                    return "next-x-fiscal-periods";
+                case CrmConditionTypeXml.InFiscalYear:
+                    return "in-fiscal-year";
+                case CrmConditionTypeXml.InFiscalPeriod:
+                    return "in-fiscal-period";
+                case CrmConditionTypeXml.InFiscalPeriodAndYear:
+                    return "in-fiscal-period-and-year";
+                case CrmConditionTypeXml.InOrBeforeFiscalPeriodAndYear:
+                    return "in-or-before-fiscal-period-and-year";
+                case CrmConditionTypeXml.InOrAfterFiscalPeriodAndYear:
+                    return "in-or-after-fiscal-period-and-year";
+                case CrmConditionTypeXml.BeginsWith:
+                    return "begins-with";
+                case CrmConditionTypeXml.NotBeginWith:
+                    return "not-begin-with";
+                case CrmConditionTypeXml.EndsWith:
+                    return "ends-with";
+                case CrmConditionTypeXml.NotEndWith:
+                    return "not-end-with";
+
+                default:
+                    return "eq";
+            }
+        }
+    }
+}

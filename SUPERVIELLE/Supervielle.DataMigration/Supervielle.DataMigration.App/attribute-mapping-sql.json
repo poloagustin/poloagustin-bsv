@@ -1,0 +1,494 @@
+﻿[
+    {
+        "table": "sta_crm_dcl_persona_fisica",
+        "entity": "PersonaFisica",
+        "attributes": [
+            {
+                "column": "per_id_pais",
+                "property": "PaisId",
+                "index": 0,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_tipo_doc",
+                "property": "TipoDocumentoId",
+                "index": 1,
+                "type": "Short"
+            },
+            {
+                "column": "per_nro_documento",
+                "property": "NumeroDocumento",
+                "index": 2,
+                "type": "String"
+            },
+            {
+                "column": "per_cuit_cuil",
+                "property": "CuitCuil",
+                "index": 3,
+                "type": "String"
+            },
+            {
+                "column": "per_nombre",
+                "property": "Nombre",
+                "index": 4,
+                "type": "String"
+            },
+            {
+                "column": "per_sexo",
+                "property": "Sexo",
+                "index": 5,
+                "type": "Char"
+            },
+            {
+                "column": "per_fecha_nacimiento",
+                "property": "FechaNacimiento",
+                "index": 6,
+                "type": "Date"
+            },
+            {
+                "column": "per_correo_electronico",
+                "property": "CorreoElectronico",
+                "index": 7,
+                "type": "String"
+            },
+            {
+                "column": "per_id_sucursal",
+                "property": "SucursalId",
+                "index": 8,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_ejecutivo_cta",
+                "property": "EjecutivoCuentaId",
+                "index": 9,
+                "type": "Int32"
+            },
+            {
+                "column": "per_id_canal_venta",
+                "property": "CanalVentaId",
+                "index": 10,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_segmento",
+                "property": "SegmentoId",
+                "index": 11,
+                "type": "Byte"
+            },
+            {
+                "column": "per_fecha_alta",
+                "property": "FechaAlta",
+                "index": 12,
+                "type": "Date"
+            },
+            {
+                "column": "dop_id_tipo_domicilio",
+                "property": "TipoDomicilioId",
+                "index": 13,
+                "type": "String"
+            },
+            {
+                "column": "dop_id_pais",
+                "property": "DomicilioPaisId",
+                "index": 14,
+                "type": "Short"
+            },
+            {
+                "column": "dop_calle",
+                "property": "DomicilioCalle",
+                "index": 15,
+                "type": "String"
+            },
+            {
+                "column": "dop_numero",
+                "property": "DomicilioNumero",
+                "index": 16,
+                "type": "Int32"
+            },
+            {
+                "column": "dop_departamento",
+                "property": "DomicilioDepartamento",
+                "index": 17,
+                "type": "String"
+            },
+            {
+                "column": "dop_codigo_postal_cpa",
+                "property": "DomicilioCodigoPostal",
+                "index": 18,
+                "type": "String"
+            },
+            {
+                "column": "dop_id_localidad",
+                "property": "DomicilioLocalidadId",
+                "index": 19,
+                "type": "Int32"
+            },
+            {
+                "column": "dop_id_provincia",
+                "property": "DomicilioProvinciaId",
+                "index": 20,
+                "type": "Short"
+            },
+            {
+                "column": "tep_id_tipo_telefono",
+                "property": "TipoTelefonoId",
+                "index": 21,
+                "type": "Byte"
+            },
+            {
+                "column": "tep_numero_telefono_ppal",
+                "property": "NumeroTelefonoPrincipal",
+                "index": 22,
+                "type": "String"
+            },
+            {
+                "column": "tep_numero_telefono_laboral",
+                "property": "NumeroTelefonoLaboral",
+                "index": 23,
+                "type": "String"
+            },
+            {
+                "column": "per_id_estado_civil",
+                "property": "EstadoCivilId",
+                "index": 24,
+                "type": "Int32"
+            },
+            {
+                "column": "per_id_banca",
+                "property": "BancaId",
+                "index": 25,
+                "type": "Int32"
+            },
+            {
+                "column": "id_oficial_responsable",
+                "property": "ResponsableOficialId",
+                "index": 26,
+                "type": "Int32"
+            },
+            {
+                "column": "id_tipo_cliente",
+                "property": "TipoClienteId",
+                "index": 27,
+                "type": "Int32"
+            },
+            {
+                "column": "per_id_actividad",
+                "property": "ActividadId",
+                "index": 28,
+                "type": "String"
+            },
+            {
+                "column": "per_id_iva",
+                "property": "IvaId",
+                "index": 29,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_profesion",
+                "property": "ProfesionId",
+                "index": 30,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_ocupacion",
+                "property": "OcupacionId",
+                "index": 31,
+                "type": "Int32"
+            },
+            {
+                "column": "per_flg_activo",
+                "property": "Activo",
+                "index": 32,
+                "type": "Byte"
+            },
+            {
+                "column": "per_flg_titular",
+                "property": "Titular",
+                "index": 33,
+                "type": "Byte"
+            },
+            {
+                "column": "per_id_pais_emp",
+                "property": "PaisEmpresaId",
+                "index": 34,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_tipo_doc_emp",
+                "property": "TipoDocumentoEmpresaId",
+                "index": 35,
+                "type": "Short"
+            },
+            {
+                "column": "per_nro_documento_emp",
+                "property": "NumeroDocumentoEmpresa",
+                "index": 36,
+                "type": "String"
+            }
+        ]
+    },
+    {
+        "table": "sta_crm_dca_caja_ahorro",
+        "entity": "CajaDeAhorro",
+        "attributes": [
+            {
+                "column": "cta_id_empresa",
+                "property": "EmpresaId",
+                "index": 0,
+                "type": "Short"
+            },
+            {
+                "column": "cta_numero",
+                "property": "CuentaNumero",
+                "index": 1,
+                "type": "Short"
+            },
+            {
+                "column": "ope_id_modulo",
+                "property": "ModuloId",
+                "index": 2,
+                "type": "String"
+            },
+            {
+                "column": "ope_id_moneda",
+                "property": "MonedaId",
+                "index": 3,
+                "type": "String"
+            },
+            {
+                "column": "ope_id_papel",
+                "property": "PapelId",
+                "index": 4,
+                "type": "String"
+            },
+            {
+                "column": "ope_id_sucursal",
+                "property": "SucursalId",
+                "index": 5,
+                "type": "Char"
+            },
+            {
+                "column": "ope_operacion",
+                "property": "Operacion",
+                "index": 6,
+                "type": "Date"
+            },
+            {
+                "column": "ope_sub_operacion",
+                "property": "SubOperacion",
+                "index": 7,
+                "type": "String"
+            },
+            {
+                "column": "ope_id_tipo_operacion",
+                "property": "TipoOperacionId",
+                "index": 8,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_pais",
+                "property": "PaisId",
+                "index": 9,
+                "type": "Int32"
+            },
+            {
+                "column": "per_id_tipo_doc",
+                "property": "TipoDocumentoId",
+                "index": 10,
+                "type": "Short"
+            },
+            {
+                "column": "per_nro_documento",
+                "property": "NumeroDocumento",
+                "index": 11,
+                "type": "Byte"
+            },
+            {
+                "column": "id_canal_venta",
+                "property": "CanalVentaId",
+                "index": 12,
+                "type": "Date"
+            },
+            {
+                "column": "id_oficial",
+                "property": "OficialId",
+                "index": 13,
+                "type": "String"
+            },
+            {
+                "column": "tipo_cuenta",
+                "property": "TipoCuenta",
+                "index": 14,
+                "type": "Short"
+            },
+            {
+                "column": "id_estado",
+                "property": "EstadoId",
+                "index": 15,
+                "type": "String"
+            },
+            {
+                "column": "embargos",
+                "property": "Embargos",
+                "index": 16,
+                "type": "Int32"
+            },
+            {
+                "column": "CBU",
+                "property": "Cbu",
+                "index": 17,
+                "type": "String"
+            },
+            {
+                "column": "cod_producto",
+                "property": "CodigoProducto",
+                "index": 18,
+                "type": "String"
+            },
+            {
+                "column": "id_paquete",
+                "property": "PaqueteId",
+                "index": 19,
+                "type": "Int32"
+            },
+            {
+                "column": "marca_resumen_on_line",
+                "property": "MarcaResumenOnline",
+                "index": 20,
+                "type": "Short"
+            },
+            {
+                "column": "tarjeta_debito_relacionada",
+                "property": "TarjetaDebitoRelacionada",
+                "index": 21,
+                "type": "Byte"
+            },
+            {
+                "column": "flg_plan_sueldo",
+                "property": "PlanSueldo",
+                "index": 22,
+                "type": "String"
+            },
+            {
+                "column": "bonificacion",
+                "property": "Bonificacion",
+                "index": 23,
+                "type": "String"
+            },
+            {
+                "column": "cod_promocion",
+                "property": "CodigoPromocion",
+                "index": 24,
+                "type": "Int32"
+            },
+            {
+                "column": "convenio",
+                "property": "Convenio",
+                "index": 25,
+                "type": "Int32"
+            },
+            {
+                "column": "tenencia_debito_cta",
+                "property": "TenenciaDebitoCuenta",
+                "index": 26,
+                "type": "Int32"
+            },
+            {
+                "column": "cant_debito_cta",
+                "property": "CantidadDebitoCuenta",
+                "index": 27,
+                "type": "Int32"
+            },
+            {
+                "column": "mora",
+                "property": "Mora",
+                "index": 28,
+                "type": "String"
+            },
+            {
+                "column": "fecha_saldo_deudor",
+                "property": "FechaSaldoDeudor",
+                "index": 29,
+                "type": "DateTime"
+            },
+            {
+                "column": "tasa_interes_asociada",
+                "property": "TasaInteresAsociada",
+                "index": 30,
+                "type": "Short"
+            },
+            {
+                "column": "comisionada",
+                "property": "Comisionada",
+                "index": 31,
+                "type": "Int32"
+            },
+            {
+                "column": "sobregiro",
+                "property": "Sobregiro",
+                "index": 32,
+                "type": "Byte"
+            }
+        ]
+    },
+    {
+        "table": "sta_crm_dcl_rel_cuenta_persona",
+        "entity": "RelacionCuentaPersona",
+        "attributes": [
+            {
+                "column": "cta_id_empresa",
+                "property": "EmpresaId",
+                "index": 0,
+                "type": "Byte"
+            },
+            {
+                "column": "cta_numero",
+                "property": "CuentaNumero",
+                "index": 1,
+                "type": "Int32"
+            },
+            {
+                "column": "per_id_pais",
+                "property": "PaisId",
+                "index": 2,
+                "type": "Short"
+            },
+            {
+                "column": "per_id_tipo_doc",
+                "property": "TipoDocumentoId",
+                "index": 3,
+                "type": "Short"
+            },
+            {
+                "column": "per_nro_documento",
+                "property": "NumeroDocumento",
+                "index": 4,
+                "type": "String"
+            },
+            {
+                "column": "rcp_id_tipo_titularidad",
+                "property": "TipoTitularidadId",
+                "index": 5,
+                "type": "Short"
+            },
+            {
+                "column": "rcp_tipo_titularidad",
+                "property": "TipoTitularidad",
+                "index": 6,
+                "type": "String"
+            },
+            {
+                "column": "rcp_flg_pers_rep",
+                "property": "PersonaRepresentativa",
+                "index": 7,
+                "type": "Byte"
+            },
+            {
+                "column": "rcp_flg_empleado",
+                "property": "Empleado",
+                "index": 8,
+                "type": "Byte"
+            }
+        ]
+    }
+]

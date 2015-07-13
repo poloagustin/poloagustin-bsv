@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{768FC467-09B0-428B-B0AD-8EA17F41AD27}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Supervielle.DataMigration.DataAccess.Crm</RootNamespace>
+    <AssemblyName>Supervielle.DataMigration.DataAccess.Crm</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.7.1.0\lib\net45\Microsoft.Xrm.Sdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountDao.cs" />
+    <Compile Include="CajaDeAhorroDao.cs" />
+    <Compile Include="CanalDao.cs" />
+    <Compile Include="ContactDao.cs" />
+    <Compile Include="EntityDao.cs" />
+    <Compile Include="EstadoCuentaDao.cs" />
+    <Compile Include="MasterDataCache.cs" />
+    <Compile Include="MasterDataDao.cs" />
+    <Compile Include="BancaDao.cs" />
+    <Compile Include="LocalidadDao.cs" />
+    <Compile Include="ModuloDao.cs" />
+    <Compile Include="MonedaDao.cs" />
+    <Compile Include="RelacionCuentaPersonaFisicaDao.cs" />
+    <Compile Include="SucursalDao.cs" />
+    <Compile Include="ProfesionDao.cs" />
+    <Compile Include="ProvinciaDao.cs" />
+    <Compile Include="SegmentoDao.cs" />
+    <Compile Include="ActividadLaboralDao.cs" />
+    <Compile Include="PaisDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoOperacionDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ACCENDO\Accendo.DynamicsIntegration.Crm\Accendo.DynamicsIntegration.Crm2015\Accendo.DynamicsIntegration.Crm2015.csproj">
+      <Project>{75eb5035-36e2-4d25-a83f-06a7a5440c15}</Project>
+      <Name>Accendo.DynamicsIntegration.Crm2015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervielle.DataMigration.DataAccess.Crm.Interfaces\Supervielle.DataMigration.DataAccess.Crm.Interfaces.csproj">
+      <Project>{9d023d76-e8f3-42e4-bbce-4f3057465522}</Project>
+      <Name>Supervielle.DataMigration.DataAccess.Crm.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervielle.DataMigration.Domain\Supervielle.DataMigration.Domain.csproj">
+      <Project>{a023dc26-9430-48d4-9061-b24814803b33}</Project>
+      <Name>Supervielle.DataMigration.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

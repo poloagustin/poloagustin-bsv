@@ -1,0 +1,137 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accendo.DynamicsIntegration.Crm2015", "..\..\ACCENDO\Accendo.DynamicsIntegration.Crm\Accendo.DynamicsIntegration.Crm2015\Accendo.DynamicsIntegration.Crm2015.csproj", "{75EB5035-36E2-4D25-A83F-06A7A5440C15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.BusinessLogic.Intefaces", "Supervielle.DataMigration.BusinessLogic.Intefaces\Supervielle.DataMigration.BusinessLogic.Intefaces.csproj", "{D34EDF51-8139-424F-BFE5-BB68EC2F61DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.BusinessLogic", "Supervielle.DataMigration.BusinessLogic\Supervielle.DataMigration.BusinessLogic.csproj", "{B4D2AB59-586C-4443-9EC5-1E3BE17C0B53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{8174DA8D-525B-45C6-883A-B8CD82AC3CC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{CD151280-C532-4F55-917D-D7F2E4B9B649}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{161B9BF8-71A8-4D36-8196-9137B9E0965C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.App", "Supervielle.DataMigration.App\Supervielle.DataMigration.App.csproj", "{257992A5-3129-40A6-94DA-65A745B797D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{8367CADB-890E-4C0F-8EC6-10CEF3F62424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.Domain", "Supervielle.DataMigration.Domain\Supervielle.DataMigration.Domain.csproj", "{A023DC26-9430-48D4-9061-B24814803B33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.DataAccess.Crm.Interfaces", "Supervielle.DataMigration.DataAccess.Crm.Interfaces\Supervielle.DataMigration.DataAccess.Crm.Interfaces.csproj", "{9D023D76-E8F3-42E4-BBCE-4F3057465522}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.DataAccess.Crm", "Supervielle.DataMigration.DataAccess.Crm\Supervielle.DataMigration.DataAccess.Crm.csproj", "{768FC467-09B0-428B-B0AD-8EA17F41AD27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.DataAccess.Sql", "Supervielle.DataMigration.DataAccess.Sql\Supervielle.DataMigration.DataAccess.Sql.csproj", "{58EF9BC0-7B38-43D9-9804-94B260D489B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervielle.DataMigration.DataAccess.Sql.Interfaces", "Supervielle.DataMigration.DataAccess.Sql.Interfaces\Supervielle.DataMigration.DataAccess.Sql.Interfaces.csproj", "{35027AE1-2A31-4766-BE47-4A5D0C0CF5B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql", "Sql", "{70DAD3D7-9609-4428-917A-CBBC1A848490}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crm", "Crm", "{6E55003A-E3D1-46A9-AA9B-C2BDC13C52C7}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://acc13:8080/tfs/accendo
+		SccProjectUniqueName0 = ..\\..\\ACCENDO\\Accendo.DynamicsIntegration.Crm\\Accendo.DynamicsIntegration.Crm2015\\Accendo.DynamicsIntegration.Crm2015.csproj
+		SccProjectTopLevelParentUniqueName0 = Supervielle.DataMigration.sln
+		SccProjectName0 = ../../ACCENDO/Accendo.DynamicsIntegration.Crm/Accendo.DynamicsIntegration.Crm2015
+		SccLocalPath0 = ..\\..\\ACCENDO\\Accendo.DynamicsIntegration.Crm\\Accendo.DynamicsIntegration.Crm2015
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = Supervielle.DataMigration.BusinessLogic.Intefaces\\Supervielle.DataMigration.BusinessLogic.Intefaces.csproj
+		SccProjectTopLevelParentUniqueName2 = Supervielle.DataMigration.sln
+		SccProjectName2 = Supervielle.DataMigration.BusinessLogic.Intefaces
+		SccLocalPath2 = Supervielle.DataMigration.BusinessLogic.Intefaces
+		SccProjectUniqueName3 = Supervielle.DataMigration.BusinessLogic\\Supervielle.DataMigration.BusinessLogic.csproj
+		SccProjectTopLevelParentUniqueName3 = Supervielle.DataMigration.sln
+		SccProjectName3 = Supervielle.DataMigration.BusinessLogic
+		SccLocalPath3 = Supervielle.DataMigration.BusinessLogic
+		SccProjectUniqueName4 = Supervielle.DataMigration.App\\Supervielle.DataMigration.App.csproj
+		SccProjectTopLevelParentUniqueName4 = Supervielle.DataMigration.sln
+		SccProjectName4 = Supervielle.DataMigration.App
+		SccLocalPath4 = Supervielle.DataMigration.App
+		SccProjectUniqueName5 = Supervielle.DataMigration.Domain\\Supervielle.DataMigration.Domain.csproj
+		SccProjectTopLevelParentUniqueName5 = Supervielle.DataMigration.sln
+		SccProjectName5 = Supervielle.DataMigration.Domain
+		SccLocalPath5 = Supervielle.DataMigration.Domain
+		SccProjectUniqueName6 = Supervielle.DataMigration.DataAccess.Crm.Interfaces\\Supervielle.DataMigration.DataAccess.Crm.Interfaces.csproj
+		SccProjectTopLevelParentUniqueName6 = Supervielle.DataMigration.sln
+		SccProjectName6 = Supervielle.DataMigration.DataAccess.Crm.Interfaces
+		SccLocalPath6 = Supervielle.DataMigration.DataAccess.Crm.Interfaces
+		SccProjectUniqueName7 = Supervielle.DataMigration.DataAccess.Crm\\Supervielle.DataMigration.DataAccess.Crm.csproj
+		SccProjectTopLevelParentUniqueName7 = Supervielle.DataMigration.sln
+		SccProjectName7 = Supervielle.DataMigration.DataAccess.Crm
+		SccLocalPath7 = Supervielle.DataMigration.DataAccess.Crm
+		SccProjectUniqueName8 = Supervielle.DataMigration.DataAccess.Sql\\Supervielle.DataMigration.DataAccess.Sql.csproj
+		SccProjectTopLevelParentUniqueName8 = Supervielle.DataMigration.sln
+		SccProjectName8 = Supervielle.DataMigration.DataAccess.Sql
+		SccLocalPath8 = Supervielle.DataMigration.DataAccess.Sql
+		SccProjectUniqueName9 = Supervielle.DataMigration.DataAccess.Sql.Interfaces\\Supervielle.DataMigration.DataAccess.Sql.Interfaces.csproj
+		SccProjectTopLevelParentUniqueName9 = Supervielle.DataMigration.sln
+		SccProjectName9 = Supervielle.DataMigration.DataAccess.Sql.Interfaces
+		SccLocalPath9 = Supervielle.DataMigration.DataAccess.Sql.Interfaces
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75EB5035-36E2-4D25-A83F-06A7A5440C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75EB5035-36E2-4D25-A83F-06A7A5440C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75EB5035-36E2-4D25-A83F-06A7A5440C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75EB5035-36E2-4D25-A83F-06A7A5440C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D34EDF51-8139-424F-BFE5-BB68EC2F61DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D34EDF51-8139-424F-BFE5-BB68EC2F61DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D34EDF51-8139-424F-BFE5-BB68EC2F61DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D34EDF51-8139-424F-BFE5-BB68EC2F61DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4D2AB59-586C-4443-9EC5-1E3BE17C0B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4D2AB59-586C-4443-9EC5-1E3BE17C0B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4D2AB59-586C-4443-9EC5-1E3BE17C0B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4D2AB59-586C-4443-9EC5-1E3BE17C0B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257992A5-3129-40A6-94DA-65A745B797D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257992A5-3129-40A6-94DA-65A745B797D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257992A5-3129-40A6-94DA-65A745B797D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257992A5-3129-40A6-94DA-65A745B797D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A023DC26-9430-48D4-9061-B24814803B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A023DC26-9430-48D4-9061-B24814803B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A023DC26-9430-48D4-9061-B24814803B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A023DC26-9430-48D4-9061-B24814803B33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D023D76-E8F3-42E4-BBCE-4F3057465522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D023D76-E8F3-42E4-BBCE-4F3057465522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D023D76-E8F3-42E4-BBCE-4F3057465522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D023D76-E8F3-42E4-BBCE-4F3057465522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{768FC467-09B0-428B-B0AD-8EA17F41AD27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{768FC467-09B0-428B-B0AD-8EA17F41AD27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{768FC467-09B0-428B-B0AD-8EA17F41AD27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{768FC467-09B0-428B-B0AD-8EA17F41AD27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58EF9BC0-7B38-43D9-9804-94B260D489B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58EF9BC0-7B38-43D9-9804-94B260D489B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58EF9BC0-7B38-43D9-9804-94B260D489B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58EF9BC0-7B38-43D9-9804-94B260D489B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35027AE1-2A31-4766-BE47-4A5D0C0CF5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35027AE1-2A31-4766-BE47-4A5D0C0CF5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35027AE1-2A31-4766-BE47-4A5D0C0CF5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35027AE1-2A31-4766-BE47-4A5D0C0CF5B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75EB5035-36E2-4D25-A83F-06A7A5440C15} = {6E55003A-E3D1-46A9-AA9B-C2BDC13C52C7}
+		{D34EDF51-8139-424F-BFE5-BB68EC2F61DC} = {CD151280-C532-4F55-917D-D7F2E4B9B649}
+		{B4D2AB59-586C-4443-9EC5-1E3BE17C0B53} = {CD151280-C532-4F55-917D-D7F2E4B9B649}
+		{257992A5-3129-40A6-94DA-65A745B797D1} = {161B9BF8-71A8-4D36-8196-9137B9E0965C}
+		{A023DC26-9430-48D4-9061-B24814803B33} = {8367CADB-890E-4C0F-8EC6-10CEF3F62424}
+		{9D023D76-E8F3-42E4-BBCE-4F3057465522} = {6E55003A-E3D1-46A9-AA9B-C2BDC13C52C7}
+		{768FC467-09B0-428B-B0AD-8EA17F41AD27} = {6E55003A-E3D1-46A9-AA9B-C2BDC13C52C7}
+		{58EF9BC0-7B38-43D9-9804-94B260D489B3} = {70DAD3D7-9609-4428-917A-CBBC1A848490}
+		{35027AE1-2A31-4766-BE47-4A5D0C0CF5B4} = {70DAD3D7-9609-4428-917A-CBBC1A848490}
+		{70DAD3D7-9609-4428-917A-CBBC1A848490} = {8174DA8D-525B-45C6-883A-B8CD82AC3CC0}
+		{6E55003A-E3D1-46A9-AA9B-C2BDC13C52C7} = {8174DA8D-525B-45C6-883A-B8CD82AC3CC0}
+	EndGlobalSection
+EndGlobal

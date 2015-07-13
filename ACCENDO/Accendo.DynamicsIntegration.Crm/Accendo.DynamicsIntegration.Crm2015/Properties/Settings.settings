@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Accendo.DynamicsIntegration.Crm2015.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ServerAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">crm2.dynamics.com</Value>
+    </Setting>
+    <Setting Name="OrganizationName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AccendoIT</Value>
+    </Setting>
+    <Setting Name="DiscoveryUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://disco.crm2.dynamics.com/XRMServices/2011/Discovery.svc</Value>
+    </Setting>
+    <Setting Name="OrganizationUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://testacconline01.api.crm2.dynamics.com/XRMServices/2011/Organization.svc</Value>
+    </Setting>
+    <Setting Name="HomeRealmUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">poloagustin@TESTACCONLINE01.onmicrosoft.com</Value>
+    </Setting>
+    <Setting Name="Domain" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AccTst1967</Value>
+    </Setting>
+    <Setting Name="EndpointType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">OnlineFederation</Value>
+    </Setting>
+    <Setting Name="UserPrincipalName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
