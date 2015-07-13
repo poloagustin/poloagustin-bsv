@@ -79,7 +79,9 @@ namespace ModuloSoa
 
 
             ddlConsultas.DataSource = listConsultas;
-            ddlConsultas.DataBind();   
+            ddlConsultas.DataBind();
+
+            ASPxLabel1.Text = Request.QueryString["id"];
         }
 
         protected void ddlConsultas_SelectedIndexChanged(object sender, EventArgs e)
