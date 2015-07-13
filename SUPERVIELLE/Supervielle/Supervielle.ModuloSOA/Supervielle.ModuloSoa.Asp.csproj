@@ -39,10 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accendo.DynamicsIntegration.Crm2015, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\ACCENDO\Accendo.DynamicsIntegration.Crm\Accendo.DynamicsIntegration.Crm2015\obj\Debug\Accendo.DynamicsIntegration.Crm2015.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.Charts.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -187,6 +183,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ACCENDO\Accendo.DynamicsIntegration.Crm\Accendo.DynamicsIntegration.Crm2015\Accendo.DynamicsIntegration.Crm2015.csproj">
+      <Project>{75eb5035-36e2-4d25-a83f-06a7a5440c15}</Project>
+      <Name>Accendo.DynamicsIntegration.Crm2015</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
