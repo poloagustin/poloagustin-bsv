@@ -12,7 +12,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("crm2.dynamics.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.241.241.11")]
         public string ServerAddress {
             get {
                 return ((string)(this["ServerAddress"]));
@@ -34,7 +34,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("AccendoIT")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SupervielleCRMDESA")]
         public string OrganizationName {
             get {
                 return ((string)(this["OrganizationName"]));
@@ -43,7 +43,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://disco.crm2.dynamics.com/XRMServices/2011/Discovery.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.241.241.11/XRMServices/2011/Discovery.svc")]
         public string DiscoveryUri {
             get {
                 return ((string)(this["DiscoveryUri"]));
@@ -52,7 +52,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://testacconline01.api.crm2.dynamics.com/XRMServices/2011/Organization.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.241.241.11/SupervielleCRMDESA/XRMServices/2011/Organization.svc")]
         public string OrganizationUri {
             get {
                 return ((string)(this["OrganizationUri"]));
@@ -70,7 +70,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("poloagustin@TESTACCONLINE01.onmicrosoft.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("svcdynmcrmadmindesa")]
         public string UserName {
             get {
                 return ((string)(this["UserName"]));
@@ -79,7 +79,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("servicios")]
         public string Domain {
             get {
                 return ((string)(this["Domain"]));
@@ -88,7 +88,7 @@ namespace Accendo.DynamicsIntegration.Crm2015.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("AccTst1967")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yano.123")]
         public string Password {
             get {
                 return ((string)(this["Password"]));

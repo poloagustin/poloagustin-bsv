@@ -17,8 +17,14 @@
         <table style="align-content:center">
             <tr style="align-content:center">                 
                 <td><dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Elige la acción a realizar:"></dx:ASPxLabel></td>
-                <td style="padding-left:30px"><asp:DropDownList runat="server" AutoPostBack ="true" EnableTheming="True" Height="20px" Width="295px" ID="ddlConsultas" OnSelectedIndexChanged="ddlConsultas_SelectedIndexChanged" OnTextChanged="ddlConsultas_SelectedIndexChanged" >
-        </asp:DropDownList></td>
+                <td style="padding-left:30px"><asp:DropDownList runat="server" AutoPostBack ="true" EnableTheming="True" Height="27px" Width="295px" ID="ddlConsultas" OnSelectedIndexChanged="ddlConsultas_SelectedIndexChanged" >
+        </asp:DropDownList>                  
+                </td>
+                <td style="visibility:hidden">
+                     <asp:Label ID="lbRegistroId" runat="server" Text="id" ForeColor="White"></asp:Label>
+                    <asp:Label ID="lbEntidadName" runat="server" Text="ent" ForeColor="White"></asp:Label>
+
+                </td>
             </tr>
         </table>      
     </div>

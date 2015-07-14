@@ -78,12 +78,14 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="Comparers\CuentaComparer.cs" />
+    <Compile Include="Comparers\RelacionCuentaPersonaComparer.cs" />
     <Compile Include="EntityMigrationService.cs" />
     <Compile Include="Helpers\ConstantDictionarySingleton.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Mappers\CuentaMapper.cs" />
     <Compile Include="Mappers\PersonaFisicaMapper.cs" />
     <Compile Include="Mappers\PersonaJuridicaMapper.cs" />
+    <Compile Include="Mappers\RelacionCuentaPersonaMapper.cs" />
     <Compile Include="OneToOneMigrationService.cs" />
     <Compile Include="ProductMigrationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

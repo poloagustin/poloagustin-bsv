@@ -56,6 +56,7 @@ namespace Supervielle.BusinessLogic
             }
 
             var relacionesCuentaPersonaFisica = MigrateRelacionesCuentaPersonaFisica();
+
 #if DEBUG
             this.crmCuentaDao.DeleteMany(cuentas);
 #endif
@@ -63,20 +64,37 @@ namespace Supervielle.BusinessLogic
 
         private IEnumerable<EntityReference> MigrateRelacionesCuentaPersonaFisica()
         {
-            var sqlRelacionesCuentaPersonaFisica = this.sqlCajaDeAhorroDao.RetrieveRecords();
-            var crmRelacionesCuentaPersonaFisica = this.crmCuentaDao.GetFiltered(GetFiltersRelacionesCuentaPersonaFisica(sqlRelacionesCuentaPersonaFisica)).ToList();
-            Dictionary<CajaDeAhorro, bsv_cuentas> crmRelacionesCuentaPersonaFisicaToCreate = new Dictionary<CajaDeAhorro, bsv_cuentas>();
-            Dictionary<CajaDeAhorro, bsv_cuentas> crmRelacionesCuentaPersonaFisicaToUpdate = new Dictionary<CajaDeAhorro, bsv_cuentas>();
+            var sqlRelacionesCuentaPersonaFisica = this.sqlRelacionCuentaPersonaDao.RetrieveRecords();
+            var crmRelacionesCuentaPersonaFisica = this.crmRelacionCuentaPersonaFisicaDao.GetFiltered(GetFiltersRelacionesCuentaPersonaFisica(sqlRelacionesCuentaPersonaFisica)).ToList();
+            Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas> crmRelacionesCuentaPersonaFisicaToCreate = new Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas>();
+            Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas> crmRelacionesCuentaPersonaFisicaToUpdate = new Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas>();
             AssignNewValues(out crmRelacionesCuentaPersonaFisicaToUpdate, out crmRelacionesCuentaPersonaFisicaToCreate, sqlRelacionesCuentaPersonaFisica, crmRelacionesCuentaPersonaFisica);
 
-            this.crmCuentaDao.UpdateMany(crmRelacionesCuentaPersonaFisicaToUpdate.Values);
-            var crmRelacionesCuentaPersonaFisicaCreated = this.crmCuentaDao.SaveMany(crmRelacionesCuentaPersonaFisicaToCreate.Values).ToList();
+            this.crmRelacionCuentaPersonaFisicaDao.UpdateMany(crmRelacionesCuentaPersonaFisicaToUpdate.Values);
+            var crmRelacionesCuentaPersonaFisicaCreated = this.crmRelacionCuentaPersonaFisicaDao.SaveMany(crmRelacionesCuentaPersonaFisicaToCreate.Values).ToList();
             return crmRelacionesCuentaPersonaFisicaToUpdate.Values.Concat(crmRelacionesCuentaPersonaFisicaCreated).Select(x => this.crmCuentaDao.GetEntityReference(x));
         }
 
-        private IEnumerable<FilterExpression> GetFiltersRelacionesCuentaPersonaFisica(IEnumerable<CajaDeAhorro> sqlRelacionesCuentaPersonaFisica)
+        private IEnumerable<FilterExpression> GetFiltersRelacionesCuentaPersonaFisica(IEnumerable<RelacionCuentaPersona> sqlRelacionesCuentaPersonaFisica)
         {
-            throw new NotImplementedException();
+            var filters = GetFilters<RelacionCuentaPersona>(
+                sqlRelacionesCuentaPersonaFisica,
+                sqlRelacionCuentaPersonaFisica =>
+                {
+                    var filter = new FilterExpression(LogicalOperator.And);
+                    var nroCuenta = BuildNumeroCuenta(sqlRelacionCuentaPersonaFisica);
+                    filter.AddCondition(new ConditionExpression("bsv_numero_de_cuenta", ConditionOperator.Equal, nroCuenta));
+                    var moneda = this.crmMonedaDao.GetObjectByCode(sqlCajaDeAhorro.MonedaId.ToString());
+                    filter.AddCondition(new ConditionExpression("bsv_moneda", ConditionOperator.Equal, moneda.Id));
+                    var modulo = this.crmModuloDao.GetObjectByCode(sqlCajaDeAhorro.ModuloId.ToString());
+                    filter.AddCondition(new ConditionExpression("bsv_mdoulo", ConditionOperator.Equal, modulo));
+                    var tipoOperacion = this.crmTipoOperacionDao.GetObjectByCode(sqlCajaDeAhorro.TipoOperacionId.ToString());
+                    filter.AddCondition(new ConditionExpression("bsv_tipo_operacion", ConditionOperator.Equal, tipoOperacion));
+
+                    return filter;
+                });
+
+            return filters;
         }
 
         private IEnumerable<EntityReference> MigrateCuentas()
@@ -137,6 +155,36 @@ namespace Supervielle.BusinessLogic
                         crmCuenta);
 
                     crmCuentasToUpdate.Add(sqlCuenta, crmCuenta);
+                }
+            }
+        }
+
+        private void AssignNewValues(
+            out Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas> crmRelacionesCuentaPersonaToUpdate,
+            out Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas> crmRelacionesCuentaPersonaToCreate,
+            IEnumerable<RelacionCuentaPersona> sqlRelacionesCuentaPersona,
+            List<bsv_relacion_fisica_cuentas> crmRelacionesCuentaPersona)
+        {
+            crmRelacionesCuentaPersonaToCreate = new Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas>();
+            crmRelacionesCuentaPersonaToUpdate = new Dictionary<RelacionCuentaPersona, bsv_relacion_fisica_cuentas>();
+
+            foreach (var sqlRelacionCuentaPersona in sqlRelacionesCuentaPersona)
+            {
+                var crmRelacionCuentaPersona = crmRelacionesCuentaPersona.FirstOrDefault(x => RelacionCuentaPersonaComparer.CompareCrm(x));
+
+                if (crmRelacionCuentaPersona == null)
+                {
+                    var crmRelacionCuentaPersonaToCreate = RelacionCuentaPersonaMapper.GetRelacionCuentaPersona(
+                        sqlRelacionCuentaPersona);
+
+                    crmRelacionesCuentaPersonaToCreate.Add(sqlRelacionCuentaPersona, crmRelacionCuentaPersonaToCreate);
+                }
+                else
+                {
+                    RelacionCuentaPersonaMapper.MapRelacionCuentaPersona(
+                        sqlRelacionCuentaPersona);
+
+                    crmRelacionesCuentaPersonaToUpdate.Add(sqlRelacionCuentaPersona, crmRelacionCuentaPersona);
                 }
             }
         }
